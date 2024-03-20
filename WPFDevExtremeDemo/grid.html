@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>DxGrid</title>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <link rel="stylesheet" href="https://cdn3.devexpress.com/jslib/23.2.4/css/dx.softblue.css">
+  <script type="text/javascript" src="https://cdn3.devexpress.com/jslib/23.2.4/js/dx.all.js"></script>
+</head>
+<body class="dx-viewport">
+  <h1>AV Products</h1>
+  <div id="dataGrid"></div>
+
+  <script>
+    $(function () {
+      var productStore = new DevExpress.data.ODataStore({
+        url: "https://js.devexpress.com/Demos/DevAV/odata/Products",
+        key: "Product_ID",
+        version: 3,
+      });
+      $("#dataGrid").dxDataGrid({
+        dataSource: productStore,
+        columns: [
+          { dataField: "Product_Name", caption: "Product Name" },
+          { dataField: "Product_Category", caption: "Product Category" },
+          { dataField: "Product_Current_Inventory", caption: "Current Inventory" },
+          { dataField: "Product_Retail_Price", caption: "Retail Price" }
+        ],
+        filterRow: {
+          visible: true
+        },
+        focusedRowEnabled: true,
+        showBorders: true,
+        editing: {
+          allowUpdating: true,
+          allowAdding: true,
+          allowDeleting: true,
+          mode: 'row'
+        },
+        paging: {
+          pageSize: 10
+        },
+        pager: {
+          visible: true,
+          showPageSizeSelector: true,
+          allowedPageSizes: [10, 20, 'all'],
+          showNavigationButtons: true
+        }
+      });
+    });
+    $(function () {
+      $.getJSON("https://js.devexpress.com/Demos/DevAV/odata/Products", function (data) {
+        var products = [];
+        for (var i = 0; i < data.value.length; i++) {
+          var obj = {
+            Name: data.value[i].Product_Name,
+            Category: data.value[i].Product_Category,
+            CurrentInventory: data.value[i].Product_Current_Inventory,
+            RetailPrice: data.value[i].Product_Retail_Price
+          }
+          products.push(obj);
+        }
+        window.chrome.webview.postMessage(products);
+        console.log(products);
+      });
+    });
+  </script>
+</body>
+</html>

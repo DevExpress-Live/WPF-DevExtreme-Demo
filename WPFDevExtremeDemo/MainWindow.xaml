@@ -1,0 +1,54 @@
+﻿<dx:ThemedWindow
+	x:Class="WPFDevExtremeDemo.MainWindow"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+	xmlns:dxsps="http://schemas.devexpress.com/winfx/2008/xaml/spreadsheet"
+	xmlns:Wpf="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf"
+	Width="1000"
+	Height="800"
+	Margin="0,0,0,0"
+	HeaderBackground="DodgerBlue"
+	Title="WPF DevExtreme Demo"
+	TitleAlignment="Center">
+	<Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+
+		<dx:SimpleButton
+			x:Name="simpleButton"
+			Grid.Column="0"
+			Height="30"
+			Margin="5,1,5,0"
+			VerticalAlignment="Top"
+			Click="simpleButton_Click"
+			FontWeight="Bold">
+			<Grid>
+				<TextBlock
+					Width="76"
+					HorizontalAlignment="Right"
+					VerticalAlignment="Center"
+					FontSize="20"
+					TextAlignment="Center">
+					<Run Text="Transfer" />
+				</TextBlock>
+			</Grid>
+		</dx:SimpleButton>
+
+		<Wpf:WebView2
+			x:Name="webView"
+			Grid.Column="0"
+			Margin="0,35,0,0"
+			Source="file://grid.html" />
+
+		<dxsps:SpreadsheetControl
+			x:Name="dxSpreadSheet"
+			Grid.Column="1"
+			CommandBarStyle="Ribbon"
+			ShowFormulaBar="True"
+			ShowStatusBar="True" />
+
+	</Grid>
+</dx:ThemedWindow>

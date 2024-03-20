@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DevExpress.Images" Version="23.2.5" />
+    <PackageReference Include="DevExpress.Wpf.Core" Version="23.2.5" />
+    <PackageReference Include="devexpress.wpf.spreadsheet" Version="23.2.5" />
+    <PackageReference Include="DevExpress.Wpf.Themes.All" Version="23.2.5" />
+    <PackageReference Include="DevExpress.Wpf.ThemesLW" Version="23.2.5" />
+    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.2365.46" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="grid.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>
